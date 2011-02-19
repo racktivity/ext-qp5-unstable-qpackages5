@@ -1,0 +1,4 @@
+h2. qpackages.org ocaml-extra 1.0
+
+...
+Qpackage containing a set of addtional ocaml libraries

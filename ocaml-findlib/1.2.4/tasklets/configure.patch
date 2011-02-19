@@ -1,0 +1,11 @@
+--- findlib-1.2.4/configure	2009-02-16 02:12:09.000000000 +0100
++++ findlib-1.2.4-patched/configure	2010-06-07 17:00:48.584109211 +0200
+@@ -199,7 +199,7 @@
+ # Whether we have to translate Unix paths to/from Windows paths.
+ 
+ if [ -z "$system" ]; then
+-    system=`ocamlc -config 2>/dev/null|grep system|sed 's/system: //'`
++    system=`ocamlc -config 2>/dev/null|grep "system:"|sed 's/system: //'`
+     # This may be
+     # - mingw
+     # - win32
