@@ -9,6 +9,8 @@ def main(q, i, params, tags):
         cfgFile = q.tools.inifile.new(cfgPath)
     cfgFile = q.tools.inifile.open(cfgPath)
     cfgFile.addSection('vfs_paths')
+    cfgFile.addSection('status')
+    cfgFile.addParam('status', 'mounted', 'False')
     localfilestore = q.console.askString('\nPlease enter a path for local file store')
     cfgFile.addParam('vfs_paths', 'localfilestore', localfilestore)
     q.system.fs.createDir(localfilestore)
