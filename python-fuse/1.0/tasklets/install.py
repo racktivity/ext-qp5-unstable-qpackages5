@@ -4,7 +4,7 @@ __tags__   = 'install',
 
 def main(q, i, params, tags):
     qpackage = params['qpackage']
-    q.platfrom.ubuntu.install('python-fuse')
+    q.platform.ubuntu.install('python-fuse')
     #q.platform.ubuntu.check()
     #from pylabs.Shell import *
     #ipshell()
