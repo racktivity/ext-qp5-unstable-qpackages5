@@ -4,4 +4,4 @@ __tags__   = 'configure',
 
 def main(q, i, params, tags):
     qpackage = params['qpackage']
-    q.extensions.enable('q.clients.googleCalendar') 
+    q.extensions.enable('q.system.vfs') 
