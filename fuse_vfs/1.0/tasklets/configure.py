@@ -5,7 +5,7 @@ __tags__   = 'configure',
 def main(q, i, params, tags):
     qpackage = params['qpackage']
     configPath = q.system.fs.joinPaths(q.dirs.cfgDir, 'vfs.cfg')
-
+    overWrite = True
     if not q.system.fs.exists(configPath):
         configFile = q.tools.inifile.new(configPath)
     else:
