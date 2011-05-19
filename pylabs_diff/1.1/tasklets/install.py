@@ -9,4 +9,4 @@ def main(q, i, params, tags):
     #Add signal for configuration so that the configure tasklet gets executed after qshell is being restarted after installation
     #qpackage.signalConfigurationNeeded()
     #enabling the package
-    q.extensions.enable('q.tools.diff')
+    #q.extensions.enable('q.system.vfs')
