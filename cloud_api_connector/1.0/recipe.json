@@ -1,0 +1,10 @@
+[ 
+  { "branch" : "default",
+     "location" : "https://bitbucket.org/aserver/cloud_api_connector",
+     "mapping" : 
+     {  "api" : "linux/lib/pylabs/extensions/api",
+        "cloud_api_clients" : "linux/lib/pylabs/extensions/cloud_api_clients",
+        "osis" : "linux/libexec/osis"
+     }
+  }
+]
