@@ -5,4 +5,8 @@ import time
 def main(q, i, params, tags):
     qpackage = params['qpackage']
     q.platform.ubuntu.install(qpackage.name)
-    qpackage.signalConfigurationNeeded()
+    while not q.system.net.checkListenPort(5222):
+        time.sleep(0.5)
+    q.platform.ubuntu.stopService(qpackage.name)
+    q.platform.ubuntu.disableStartAtBoot(qpackage.name)
+
