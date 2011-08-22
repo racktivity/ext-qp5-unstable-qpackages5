@@ -185,18 +185,18 @@ swift-init all start || die "Failed to launch Swift services"
     q.system.fs.remove(file_path, onlyIfExists=True)
     q.system.fs.writeFile(file_path, swift_install_script.strip())
     q.system.unix.chmod(q.dirs.tmpDir, 0774, filePattern=file_name)
-    q.action.start('Installing %s %s' % (qpackage.name, qpackage.version))
+    q.action.start('Installing %s %s' % (qpackage.name.capitalize(), qpackage.version))
     exit_code, stdout, stderr = q.system.process.run(file_path, showOutput=True, captureOutput=False, stopOnError=False, user='root')
     if exit_code == 0:
         q.system.fs.remove(file_path, onlyIfExists=True)
         q.action.stop(failed=False)
     elif exit_code != 0:
-        q.logger.log('Failed to install %s %s' % (qpackage.name, qpackage.version), level=3)
+        q.logger.log('Failed to install %s %s' % (qpackage.name.capitalize(), qpackage.version), level=3)
         q.action.stop(failed=True)
     elif exit_code == -1:
-        q.logger.log('Installation of %s %s was killed' % (qpackage.name, qpackage.version), level=3) 
+        q.logger.log('Installation of %s %s was killed' % (qpackage.name.capitalize(), qpackage.version), level=3) 
         q.action.stop(failed=True)
     else:
-        q.logger.log('Unknown error occured while installing %s %s' % (qpackage.name, qpackage.version), level=3) 
+        q.logger.log('Unknown error occured while installing %s %s' % (qpackage.name.capitalize(), qpackage.version), level=3) 
         q.action.stop(failed=True)
 
