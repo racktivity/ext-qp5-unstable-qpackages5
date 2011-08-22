@@ -183,7 +183,7 @@ swift-init all start || die "Failed to launch Swift services"
 
 """
     q.system.fs.remove(file_path, onlyIfExists=True)
-    q.system.fs.writeFile(file_path, swift_install_script)
+    q.system.fs.writeFile(file_path, swift_install_script.strip())
     q.system.unix.chmod(q.dirs.tmpDir, 0774, filePattern=file_name)
     q.action.start('Installing %s %s' % (qpackage.name, qpackage.version))
     exit_code, stdout, stderr = q.system.process.run(file_path, showOutput=True, captureOutput=False, stopOnError=False, user='root')
