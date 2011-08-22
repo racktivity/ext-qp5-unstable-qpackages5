@@ -1,0 +1,3 @@
+h2. qpackages5 swift 1.4.2
+This QPackage installs OpenStack Object Storage (a.k.a Swift) 1.4.2
+
