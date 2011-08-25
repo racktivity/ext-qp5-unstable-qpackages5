@@ -1,11 +1,10 @@
-
 __author__ = 'aserver'
 __tags__   = 'install',
 
 def main(q, i, params, tags):
     qpackage = params['qpackage']
     file_name = 'swift-install-script.sh'
-    file_path = q.system.fs.joinPaths(q.dirs.tmpDir, file_name)
+    setup_path = q.dirs.tmpDir
     swift_install_script = """
 #!/bin/bash
 
@@ -62,18 +61,11 @@ user = swift
 log_facility = LOG_LOCAL1
 
 [pipeline:main]
-pipeline = healthcheck swift3 cache tempauth proxy-server
+pipeline = healthcheck swift3 cache proxy-server
 
 [app:proxy-server]
 use = egg:swift#proxy
 allow_account_management = true
-
-[filter:tempauth]
-use = egg:swift#tempauth
-user_admin_admin = admin .admin .reseller_admin
-user_test_tester = testing .admin
-user_test2_tester2 = testing2 .admin
-user_test_tester3 = testing3
 
 [filter:healthcheck]
 use = egg:swift#healthcheck
@@ -182,13 +174,13 @@ swift-remakerings || die "Failure while building rings"
 swift-init all start || die "Failed to launch Swift services"
 
 """
-    q.system.fs.remove(file_path, onlyIfExists=True)
-    q.system.fs.writeFile(file_path, swift_install_script.strip())
-    q.system.unix.chmod(q.dirs.tmpDir, 0774, filePattern=file_name)
+    q.system.fs.remove(q.system.fs.joinPaths(setup_path, file_name), onlyIfExists=True)
+    q.system.fs.writeFile(q.system.fs.joinPaths(setup_path, file_name), swift_install_script.strip())
+    q.system.unix.chmod(setup_path, 0774, filePattern=file_name)
     q.action.start('Installing %s %s' % (qpackage.name.capitalize(), qpackage.version))
-    exit_code, stdout, stderr = q.system.process.run(file_path, showOutput=True, captureOutput=False, stopOnError=False, user='root')
+    exit_code, stdout, stderr = q.system.process.run(file_name, cwd=setup_path, stopOnError=False, user='root')
     if exit_code == 0:
-        q.system.fs.remove(file_path, onlyIfExists=True)
+        q.system.fs.remove(q.system.fs.joinPaths(setup_path, file_name), onlyIfExists=True)
         q.action.stop(failed=False)
     elif exit_code != 0:
         q.logger.log('Failed to install %s %s' % (qpackage.name.capitalize(), qpackage.version), level=3)
