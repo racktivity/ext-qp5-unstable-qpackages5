@@ -178,7 +178,7 @@ swift-init all start || die "Failed to launch Swift services"
     q.system.fs.writeFile(q.system.fs.joinPaths(setup_path, file_name), swift_install_script.strip())
     q.system.unix.chmod(setup_path, 0774, filePattern=file_name)
     q.action.start('Installing %s %s' % (qpackage.name.capitalize(), qpackage.version))
-    exit_code, stdout, stderr = q.system.process.run(file_name, cwd=setup_path, stopOnError=False, user='root')
+    exit_code, stdout, stderr = q.system.process.run(q.system.fs.joinPaths(setup_path, file_name), stopOnError=False, user='root')
     if exit_code == 0:
         q.system.fs.remove(q.system.fs.joinPaths(setup_path, file_name), onlyIfExists=True)
         q.action.stop(failed=False)
