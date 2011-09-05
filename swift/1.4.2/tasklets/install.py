@@ -34,7 +34,7 @@ my_aptitude -y install python-software-properties
 add-apt-repository ppa:swift-core/release || die "Adding APT repository failed"
 # Another update to include the newly added Swift Core Release repository
 my_aptitude update
-my_aptitude -y install curl memcached python-configobj python-setuptools python-simplejson python-xattr sqlite3 python-webob python-eventlet python-greenlet python-pastedeploy python-netifaces
+my_aptitude -y install memcached python-configobj python-simplejson python-xattr sqlite3 python-webob python-eventlet python-greenlet python-pastedeploy python-netifaces
 echo
 
 echo
