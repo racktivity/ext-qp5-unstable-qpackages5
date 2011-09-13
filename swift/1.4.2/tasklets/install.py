@@ -23,7 +23,7 @@ die () {
 
 my_aptitude () {
         echo "Running aptitude " $@
-        aptitude $@ || die "Aptitude failed"
+        apt-get $@ || die "Aptitude failed"
 }
 
 echo
