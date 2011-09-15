@@ -4,7 +4,9 @@ __tags__   = 'install',
 
 def main(q, i, params, tags):
     qpackage = params['qpackage']
-    q.platform.ubuntu.install(qpackage.name)
+    #name="postgresql-9.1"
+    name="postgresql"
+    q.platform.ubuntu.install(name)
     q.platform.ubuntu.stopService('postgresql')
     q.platform.ubuntu.disableStartAtBoot('postgresql')
     
